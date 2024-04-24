@@ -1,7 +1,7 @@
 {
-  "name": "agesmart-nutrition",
+  "name": "age-aware-advisor",
   "version": "1.0.0",
-  "description": "Backend for mobile application 'AgeSmart Nutrition'",
+  "description": "Backend for mobile application",
   "main": "index.js",
   "scripts": {
     "start": "node server.js"

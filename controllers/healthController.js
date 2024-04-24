@@ -65,10 +65,13 @@ exports.estimateAge = asyncMiddleware(async (req, res) => {
   );
   const modelResult = await modelResponse.json();
   if (modelResult.error) {
-    throw new AppError(
-      'Our model is currently loading, please try again in a few seconds.',
-      400
-    );
+    res.status(500).json({
+      status: 'fail',
+      data: {
+        result:
+          'Our model is currently loading, please try again in a few seconds.',
+      },
+    });
   }
 
   const ageGroup = ageConverter(modelResult);
@@ -137,9 +140,11 @@ exports.foodCalories = asyncMiddleware(async (req, res) => {
     safetySettings,
   });
 
-  const prompt = `Can you calculate calories from this food?\
-  make your answer in form of JSON object. first key is food name if there is more than one plate mention them with , between names. and second key is estimated calories and its value say the estimated calories and it depends on quantity,\
-  third key is description of you how estimated calories. Please don't add any other words. and don't change the format because it will not work for me.`;
+  const prompt = `Can you calculate calories from this food?  \
+  make your answer in form of JSON object. first key is name if there is more than one plate mention them with , between names. and second key is estimated calories and its value say the estimated calories and it depends on quantity,\
+  third key is description of you how estimated calories. if it's not a food make name 'not a food'\
+  Please don't add any other words. and don't change the format because it will not work for me.`;
+
   const image = {
     inlineData: {
       data: req.file.buffer.toString('base64'),
