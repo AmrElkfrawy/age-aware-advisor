@@ -160,7 +160,6 @@ exports.foodCalories = asyncMiddleware(async (req, res) => {
   const endIndex = text.lastIndexOf('}');
   const jsonRes = JSON.parse(text.substring(startIndex, endIndex + 1));
 
-  console.log(text);
   res.status(200).json({
     status: 'success',
     data: {
