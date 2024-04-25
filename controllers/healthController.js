@@ -119,7 +119,7 @@ exports.nutrition = asyncMiddleware(async (req, res) => {
     safetySettings,
   });
 
-  const prompt = `Can you suggest healthy food system for ${req.body.age}?. Suggest famous food don't suggest salmon say fish instead.`;
+  const prompt = `Can you suggest healthy food system for the age of ${req.body.age}?. Suggest famous food don't suggest salmon say fish instead.`;
 
   const result = await model.generateContent(prompt);
   const response = await result.response;
