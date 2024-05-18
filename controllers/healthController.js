@@ -119,7 +119,9 @@ exports.nutrition = asyncMiddleware(async (req, res) => {
     safetySettings,
   });
 
-  const prompt = `Can you suggest healthy food system for the age of ${req.body.age}?. Suggest famous food don't suggest salmon say fish instead.`;
+  const prompt = `Can you suggest healthy food system for the age of ${req.body.age}?. Suggest famous food don't suggest salmon say fish instead.\
+  The response should be json format, first key is breakfast and its value is array of food names, second key is lunch and its value is array of food names, third key is dinner and its value is array of food names.',\
+  Don't add any other words. and don't change the format because it will not work for me.`;
 
   const result = await model.generateContent(prompt);
   const response = await result.response;
