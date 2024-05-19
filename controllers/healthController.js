@@ -108,7 +108,13 @@ exports.nutrition = asyncMiddleware(async (req, res) => {
     return res.status(200).json({
       status: 'success',
       data: {
-        result: 'no suggestion',
+        result: {
+          breakfast: [
+            'For this age, it is recommended to visit a nutritionist.',
+          ],
+          lunch: ['For this age, it is recommended to visit a nutritionist.'],
+          dinner: ['For this age, it is recommended to visit a nutritionist.'],
+        },
       },
     });
   }
