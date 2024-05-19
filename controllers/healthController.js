@@ -65,7 +65,7 @@ exports.estimateAge = asyncMiddleware(async (req, res) => {
   );
   const modelResult = await modelResponse.json();
   if (modelResult.error) {
-    res.status(500).json({
+    return res.status(500).json({
       status: 'fail',
       data: {
         result:
@@ -95,7 +95,7 @@ exports.estimateAge = asyncMiddleware(async (req, res) => {
   const response = await result.response;
   const text = response.text();
   */
-  res.status(200).json({
+  return res.status(200).json({
     status: 'success',
     data: {
       result: ageGroup,
@@ -133,7 +133,7 @@ exports.nutrition = asyncMiddleware(async (req, res) => {
   const response = await result.response;
   const text = response.text();
   const resp = JSON.parse(text);
-  res.status(200).json({
+  return res.status(200).json({
     status: 'success',
     data: {
       result: resp,
@@ -168,7 +168,7 @@ exports.foodCalories = asyncMiddleware(async (req, res) => {
   const endIndex = text.lastIndexOf('}');
   const jsonRes = JSON.parse(text.substring(startIndex, endIndex + 1));
 
-  res.status(200).json({
+  return res.status(200).json({
     status: 'success',
     data: {
       result: jsonRes,
